@@ -1,8 +1,7 @@
 import React, {useEffect, useState } from 'react'
 
 function App() {
-// eslint-disable-next-line
-  const [backendData2, setBackendData2] = useState([{}])
+  const [backendData, setBackendData] = useState([{}])
   const [inputHeight, setinputHeight] = useState('180');
 
 
@@ -11,7 +10,7 @@ function App() {
     response => response.json()
   ).then(
     data => {
-      setBackendData2(data)
+      setBackendData(data)
     }
   )
   }, [])
@@ -34,17 +33,16 @@ function App() {
           <div>You are {inputHeight} cm tall</div>
       </form>
       <div>
-        {console.log(backendData2, "WTF IS THIS")}
-        {(backendData2.length == 1) ? (
+        {(backendData.length == 1) ? (
           
           <p>Loading...</p>
         ): (
-          backendData2.map((person, i) => {if (person.height === inputHeight) {return <p key={i}>{person.name} is also {person.height} cm tall</p>}})
+          backendData.map((person, i) => {if (person.height === inputHeight) {return <p key={i}>{person.name} is also {person.height} cm tall</p>}})
         )
         }
       </div>
       
-      <footer>the footer</footer>
+      <footer>Made by Chris</footer>
     </div>
   );
 }
